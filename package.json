@@ -1,0 +1,25 @@
+{
+  "name": "cocos-spine-toolkit",
+  "version": "1.0.0",
+  "description": "Procedural IK solver, dynamic attachment helpers, and bone followers for Spine skeletons in Cocos Creator 3.x.",
+  "main": "assets/SpineIKSolver.ts",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 0"
+  },
+  "keywords": [
+    "cocos",
+    "cocos-creator",
+    "spine",
+    "ik",
+    "inverse-kinematics",
+    "skeletal-animation",
+    "attachment",
+    "bone-follower"
+  ],
+  "author": "海老豹666",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/username/cocos-spine-toolkit.git"
+  }
+}

@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>打工人 2D 骨骼动画 — Spine 级还原</title>
+    <meta name="description" content="完全还原 DarkAssassin Spine 骨骼体系的打工人 2D 行走骨骼动画">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&family=Noto+Sans+SC:wght@300;400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="app-container">
+        <header class="app-header">
+            <div class="logo">
+                <span class="logo-icon">💼</span>
+                <h1>打工人 Skeletal Animator</h1>
+                <span class="version-tag">V3 · Spine 数据驱动</span>
+            </div>
+            <div class="header-right">
+                <div class="char-select-group">
+                    <label for="char-select">角色切换:</label>
+                    <select id="char-select">
+                        <option value="salaryman" selected>🤵 打工人 (无毛边西装)</option>
+                        <option value="assassin">🥷 刺客 (原版手绘预览)</option>
+                    </select>
+                </div>
+                <div class="anim-select-group">
+                    <label for="anim-select">当前动作:</label>
+                    <select id="anim-select"></select>
+                </div>
+                <div class="status-badge">
+                    <span class="pulse-dot"></span>
+                    <span id="status-text">加载中...</span>
+                </div>
+            </div>
+        </header>
+
+        <main class="app-main">
+            <aside class="sidebar">
+                <div class="panel glass-panel">
+                    <h2>⚙️ 播放控制</h2>
+                    <div class="ctrl">
+                        <label>播放速度 <span id="v-speed" class="val">1.0</span>x</label>
+                        <input type="range" id="r-speed" min="0" max="3" step="0.1" value="1">
+                    </div>
+                    <div class="ctrl">
+                        <label>全局缩放 <span id="v-scale" class="val">0.55</span></label>
+                        <input type="range" id="r-scale" min="0.2" max="1.2" step="0.05" value="0.55">
+                    </div>
+                    <div class="btn-row">
+                        <button class="btn btn-accent" id="btn-play">⏸️ 暂停</button>
+                        <button class="btn btn-outline" id="btn-bones">🦴 显示骨骼</button>
+                    </div>
+                </div>
+
+                <div class="panel glass-panel">
+                    <h2>🎨 西装配色</h2>
+                    <div class="color-row">
+                        <div class="color-swatch" data-color="#1b2838" style="background:#1b2838" title="深藏青"></div>
+                        <div class="color-swatch" data-color="#2c3e50" style="background:#2c3e50" title="碳灰"></div>
+                        <div class="color-swatch" data-color="#1a1a2e" style="background:#1a1a2e" title="午夜蓝"></div>
+                        <div class="color-swatch" data-color="#3c1518" style="background:#3c1518" title="酒红"></div>
+                        <div class="color-swatch" data-color="#2d6a4f" style="background:#2d6a4f" title="橄榄绿"></div>
+                        <div class="color-swatch selected" data-color="#1d3557" style="background:#1d3557" title="商务蓝"></div>
+                    </div>
+                </div>
+
+                <div class="panel glass-panel">
+                    <h2>🌳 骨骼层级</h2>
+                    <div class="tree-scroll" id="bone-tree"></div>
+                </div>
+
+                <div class="panel glass-panel">
+                    <h2>🖼️ 部件切片</h2>
+                    <p class="hint">程序化生成的零件(无毛边)</p>
+                    <div class="parts-grid" id="parts-grid"></div>
+                </div>
+            </aside>
+
+            <section class="canvas-area">
+                <div class="canvas-wrap">
+                    <canvas id="main-canvas" width="900" height="720"></canvas>
+                    <div class="loading-overlay" id="loader">
+                        <div class="spinner"></div>
+                        <p>正在解析 Spine 骨骼数据...</p>
+                    </div>
+                </div>
+                <footer class="info-bar">
+                    <span>骨骼: <b id="info-bones">-</b></span>
+                    <span>插槽: <b id="info-slots">-</b></span>
+                    <span>动画时长: <b id="info-dur">-</b>s</span>
+                    <span>帧率: <b id="info-fps">-</b> FPS</span>
+                </footer>
+            </section>
+        </main>
+    </div>
+    <script src="engine.js"></script>
+</body>
+</html>
