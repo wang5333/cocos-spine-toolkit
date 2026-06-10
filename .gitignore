@@ -17,3 +17,7 @@ library/
 profiles/
 .creator/
 build/
+
+# Local interactive previews
+web-preview/3d_character_viewer.html
+
